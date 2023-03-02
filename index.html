@@ -21,14 +21,78 @@
     <main class="container">
         <h1 class="text-center my-4">Ai Universe Hub</h1>
         <button class="btn btn-danger d-block mx-auto">Sort By Date</button>
-        <section class="my-4">
 
-            <div>
-                <div id="card-container" class="row">
-                   <!-- card content dynamically goes here  -->
+        <!-- card section  -->
+        <section class="my-4">
+            <div id="card-container" class="row">
+                <!-- card content dynamically goes here  -->
+            </div>
+        </section>
+
+        <!-- modal section  -->
+        <section>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary mx-auto d-flex m-4" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
+                Launch demo modal
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1> -->
+
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="row p-5">
+                            <div class="col-12 col-md-6 border border-danger p-3 bg-danger rounded bg-opacity-10">
+                                <h5>ChatGPT is an AI-powered chatbot platform that uses OpenAI's GPT technology to
+                                    simulate human conversation.</h5>
+                                <div class="row justify-content-between p-2">
+                                    <div class="col-12 col-md-6 bg-white rounded text-center w-25 ">
+                                        <p class="text-success fw-bold lh-sm">$10/ month Basic</p>
+                                    </div>
+                                    <div class="col-12 col-md-6 bg-white rounded text-center w-25 ">
+                                        <p class="text-warning fw-bold lh-sm">$50/ month Pro</p>
+                                    </div>
+                                    <div class="col-12 col-md-6 bg-white px-2 rounded text-center w-25 ">
+                                        <p class="text-danger fw-bold lh-sm">Contact us Enterprise</p>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-12 col-md-6">
+                                        <h5>Features</h5>
+                                        <ul class="list">
+                                            <li class="list-item">An item</li>
+                                            <li class="list-item">A second item</li>
+                                            <li class="list-item">A third item</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <h5>Integrations</h5>
+                                        <ul class="list">
+                                            <li class="list-item">FB Messenger</li>
+                                            <li class="list-item">Slack</li>
+                                            <li class="list-item">Telegram</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6 border p-3 rounded position-relative">
+                             <img src="https://picsum.photos/200" style="width: 437px; height: 250px;" class="img-fluid rounded" alt="">
+                            <h5 class="text-center mt-4">Hi, how are you doing today?</h5>
+                            <p class="text-center">I'm doing well, thank you for asking. How can I assist you today?</p>
+                                <span class="text-white bg-danger bg-opacity-75 rounded-pill me-3 mt-3 px-2 py-1 position-absolute top-0 end-0">94% accuracy</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </section>
 
     </main>

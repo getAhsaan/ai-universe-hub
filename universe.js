@@ -29,7 +29,7 @@ const showToolsData = (data) => {
                                         <i class="fa-regular fa-calendar"></i> <span>${date}</span>
                                     </div>
                                     <div>
-                                        <i class="fa-solid fa-arrow-right bg-warning-subtle btn text-warning rounded-circle p-2"></i>
+                                        <i class="fa-solid fa-arrow-right bg-danger bg-opacity-10 btn text-danger rounded-circle p-2"></i>
                                 
                                     </div>
                                 </div>
