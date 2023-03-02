@@ -53,8 +53,8 @@ const getModalData = (id) => {
 const showModalData = (modalData) => {
     // console.log(modalData);
 
-    const { description, features, pricing } = modalData;
-
+    const { description, features, pricing, integrations } = modalData;
+    console.log(integrations);
     // for modal description
     document.getElementById('modal-description').innerHTML = description;
     // for modal pricing
@@ -62,8 +62,11 @@ const showModalData = (modalData) => {
     document.getElementById('price-2').innerHTML = pricing[1].price + ' ' + pricing[1].plan;
     document.getElementById('price-3').innerHTML = pricing[2].price + ' ' + pricing[2].plan;
     // for modal feature
+    // fix the code bellow correctly
     document.getElementById('modal-feature-container').innerHTML = `
-     ${features.map(f => `<li class="list-item">${f}</li>`).join(' ')}
-    `
 
+    `
+    document.getElementById('modal-integrations-container').innerHTML = `
+         ${integrations.map(i => `<li class="list-item">${i}</li>`).join('')}
+    `
 }
