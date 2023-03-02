@@ -53,8 +53,8 @@ const getModalData = (id) => {
 const showModalData = (modalData) => {
     // console.log(modalData);
 
-    const { description, features, pricing, integrations } = modalData;
-    console.log(integrations);
+    const { description, features, pricing, integrations, image_link, input_output_examples } = modalData;
+   
     // for modal description
     document.getElementById('modal-description').innerHTML = description;
     // for modal pricing
@@ -62,11 +62,20 @@ const showModalData = (modalData) => {
     document.getElementById('price-2').innerHTML = pricing[1].price + ' ' + pricing[1].plan;
     document.getElementById('price-3').innerHTML = pricing[2].price + ' ' + pricing[2].plan;
     // for modal feature
-    // fix the code bellow correctly
     document.getElementById('modal-feature-container').innerHTML = `
 
     `
+    // for modal integrations 
     document.getElementById('modal-integrations-container').innerHTML = `
          ${integrations.map(i => `<li class="list-item">${i}</li>`).join('')}
+    `
+    // for modal image and input, output
+    document.getElementById('modal right-container').innerHTML =  `
+        <img src="${image_link[0]}" style="width: 437px; height: 250px;"
+          class="img-fluid rounded" alt="">
+          <h5 class="text-center mt-4">${input_output_examples[0].input}</h5>
+          <p class="text-center">${input_output_examples[0].output}</p>
+          <span class="text-white bg-danger bg-opacity-75 rounded-pill me-3 mt-3 px-2 py-1 position-absolute top-0 end-0">94%
+           accuracy</span>
     `
 }
