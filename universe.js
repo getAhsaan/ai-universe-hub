@@ -1,16 +1,23 @@
-const getToolsData = () => {
+const getToolsData = (showMore) => {
     showLoader(true);
     fetch(' https://openapi.programming-hero.com/api/ai/tools')
         .then(res => res.json())
-        .then(data => showToolsData(data.data.tools))
+        .then(data => showToolsData(data.data.tools,showMore))
 };
 
-const showToolsData = (data) => {
+const showToolsData = (data,showMore) => {
     // console.log(data);
-    data.slice(0, 6).forEach(toolData => {
+    const cardContainer = document.getElementById('card-container');
+    cardContainer.innerHTML = '';
+    let setShowingData;
+    if(showMore){
+        setShowingData = data.slice(0,data.length);
+    }else{
+        setShowingData = data.slice(0,6);
+    }
+    setShowingData.forEach(toolData => {
         // console.log(toolData);
         const { image, features, name, published_in: date, id } = toolData;
-        const cardContainer = document.getElementById('card-container');
         cardContainer.innerHTML += `
          <div class="col-12 col-md-6 col-lg-4 mb-4">
                         <div class="card">
@@ -99,5 +106,10 @@ const showLoader = (isLoading) => {
     }
 }
 
+// show more control
+const handleSeeMore = () => {
+    getToolsData('showAll');
+    
+}
 
 getToolsData();
