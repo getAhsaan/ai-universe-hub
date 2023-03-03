@@ -1,19 +1,18 @@
 const getToolsData = (showMore) => {
-    showLoader(true);
     fetch(' https://openapi.programming-hero.com/api/ai/tools')
         .then(res => res.json())
-        .then(data => showToolsData(data.data.tools,showMore))
+        .then(data => showToolsData(data.data.tools, showMore))
 };
 
-const showToolsData = (data,showMore) => {
+const showToolsData = (data, showMore) => {
     // console.log(data);
     const cardContainer = document.getElementById('card-container');
     cardContainer.innerHTML = '';
     let setShowingData;
-    if(showMore){
-        setShowingData = data.slice(0,data.length);
-    }else{
-        setShowingData = data.slice(0,6);
+    if (showMore) {
+        setShowingData = data.slice(0, data.length);
+    } else {
+        setShowingData = data.slice(0, 6);
     }
     setShowingData.forEach(toolData => {
         // console.log(toolData);
@@ -99,9 +98,9 @@ const showModalData = (modalData) => {
 // loader/spinner control
 const showLoader = (isLoading) => {
     const loaderBtn = document.getElementById('loader-btn');
-    if(isLoading) {
+    if (isLoading) {
         loaderBtn.classList.remove('d-none');
-    }else{
+    } else {
         loaderBtn.classList.add('d-none');
     }
 }
@@ -109,7 +108,10 @@ const showLoader = (isLoading) => {
 // show more control
 const handleSeeMore = () => {
     getToolsData('showAll');
-    
+    const showMoreBtn = document.getElementById('see-more-btn');
+    showMoreBtn.classList.remove('d-block');
+    showMoreBtn.style.display = 'none';
+
 }
 
 getToolsData();
