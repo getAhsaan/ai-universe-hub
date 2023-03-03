@@ -4,17 +4,16 @@ const getToolsData = () => {
         .then(data => showToolsData(data.data.tools))
 };
 getToolsData();
-
 const showToolsData = (data) => {
     // console.log(data);
-    data.forEach(toolData => {
+    data.slice(0, 6).forEach(toolData => {
         // console.log(toolData);
         const { image, features, name, published_in: date, id } = toolData;
         const cardContainer = document.getElementById('card-container');
         cardContainer.innerHTML += `
          <div class="col-12 col-md-6 col-lg-4 mb-4">
                         <div class="card">
-                            <img src="${image}" class="card-img-top img-fluid"
+                            <img src="${image}" class="card-img-top img-fluid w-100"
                                 style="width: 437px; height: 300px;" alt="...">
                             <div class="card-body">
                                 <h4>Features</h4>
@@ -53,14 +52,18 @@ const getModalData = (id) => {
 const showModalData = (modalData) => {
     console.log(modalData);
 
-    const { description, features, pricing, integrations, image_link, input_output_examples } = modalData;
-
+    const { description, features, pricing, integrations, image_link, input_output_examples, accuracy } = modalData;
     // for modal description
     document.getElementById('modal-description').innerHTML = description;
     // for modal pricing
-    document.getElementById('price-1').innerHTML = `${pricing ? pricing[0].price : 'Free of Cost/'} ${pricing ? pricing[0].plan : 'Basic'}`;
-    document.getElementById('price-2').innerHTML = `${pricing ? pricing[1].price : 'Free Of Cost/'} ${pricing ? pricing[1].plan : 'Pro'}`;
-    document.getElementById('price-3').innerHTML = `${pricing ? pricing[2].price : 'Free of Cost /'} ${pricing ? pricing[2].plan : 'Enterprise'}`;
+    document.getElementById('price-1').innerHTML = `${pricing ? pricing[0].price !=='0' && pricing[0].price !=='No cost' ? pricing[0].price : 'Free Of Cost/' : 'Free of Cost/'} ${pricing ? pricing[0].plan : 'Basic'}`;
+
+    document.getElementById('price-2').innerHTML = `${pricing ? pricing[1].price !=='0' && pricing[0].price !=='No cost' ? pricing[1].price : 'Free Of Cost/' : 'Free of Cost/'} ${pricing ? pricing[1].plan : 'Pro'}`;
+
+    document.getElementById('price-3').innerHTML = `${pricing ? pricing[2].price !=='0' && pricing[0].price !=='No cost' ? pricing[2].price : 'Free Of Cost/' : 'Free of Cost/'} ${pricing ? pricing[2].plan : 'Enterprise'}`;
+
+    // document.getElementById('price-2').innerHTML = `${pricing ? pricing[1].price : 'Free Of Cost/'} ${pricing ? pricing[1].plan : 'Pro'}`;
+    // document.getElementById('price-3').innerHTML = `${pricing ? pricing[2].price : 'Free of Cost /'} ${pricing ? pricing[2].plan : 'Enterprise'}`;
     // for modal feature
     const fName = [];
     for (const f in features) {
@@ -79,7 +82,9 @@ const showModalData = (modalData) => {
           class="img-fluid rounded" alt="">
           <h5 class="text-center mt-4">${input_output_examples ? input_output_examples[0].input : 'Can you give any example?'}</h5>
           <p class="text-center">${input_output_examples ? input_output_examples[0].output : 'No! Not Yet! Take a break!!!'}</p>
-          <span class="text-white bg-danger bg-opacity-75 rounded-pill me-3 mt-3 px-2 py-1 position-absolute top-0 end-0">94%
+          <span id="score" class="text-white bg-danger bg-opacity-75 rounded-pill me-3 mt-3 px-2 py-1 position-absolute top-0 end-0">${accuracy.score ? 
+            (accuracy.score).toString().slice(2, 4) :
+             '' }%
            accuracy</span>
     `
 }

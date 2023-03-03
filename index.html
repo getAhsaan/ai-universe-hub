@@ -20,7 +20,7 @@
 
     <main class="container">
         <h1 class="text-center my-4">Ai Universe Hub</h1>
-        <button class="btn btn-danger d-block mx-auto">Sort By Date</button>
+        <button id="sorting" class="btn btn-danger d-block mx-auto">Sort By Date</button>
 
         <!-- card section  -->
         <section class="my-4">
@@ -41,15 +41,17 @@
 
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="row p-5">
-                            <div class="col-12 col-md-6 border border-danger p-3 bg-danger rounded bg-opacity-10">
+                        <div class="row p-5 justify-content-around">
+                            <div
+                                class="col-12 col-lg-6 border border-danger p-3 bg-danger rounded bg-opacity-10 mb-4 mb-lg-0">
                                 <h5 id="modal-description"></h5>
+                                <!-- pricing section start  -->
                                 <div id="price-container" class="row justify-content-between p-2">
-                                    <div class="col-12 col-md-6 bg-white rounded text-center "
+                                    <div class="col-12 col-md-6 bg-white rounded text-center mb-2 "
                                         style="width: 105px; height: 70px;">
                                         <p id="price-1" class="text-success fw-bold lh-sm"></p>
                                     </div>
-                                    <div class="col-12 col-md-6 bg-white rounded text-center "
+                                    <div class="col-12 col-md-6 bg-white rounded text-center mb-2 "
                                         style="width: 105px; height: 70px;">
                                         <p id="price-2" class="text-warning fw-bold lh-sm"></p>
                                     </div>
@@ -58,6 +60,7 @@
                                         <p id="price-3" class="text-danger fw-bold lh-sm"></p>
                                     </div>
                                 </div>
+                                <!-- pricing section end  -->
                                 <div class="row p-2">
                                     <div class="col-12 col-md-6">
                                         <h5>Features</h5>
@@ -75,7 +78,7 @@
                             </div>
 
                             <div id="modal right-container"
-                                class="col-12 col-md-6 border p-3 rounded position-relative">
+                                class="col-12 col-lg-5 border p-3 rounded position-relative">
 
                             </div>
                         </div>
