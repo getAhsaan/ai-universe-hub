@@ -18,7 +18,7 @@ const showToolsData = (data, showMore) => {
         // console.log(toolData);
         const { image, features, name, published_in: date, id } = toolData;
         cardContainer.innerHTML += `
-         <div class="col-12 col-md-6 col-lg-4 mb-4">
+         <div id="toolCard" class="col-12 col-md-6 col-lg-4 mb-4">
                         <div class="card">
                             <img src="${image}" class="card-img-top img-fluid w-100"
                                 style="width: 437px; height: 300px;" alt="...">
@@ -31,7 +31,7 @@ const showToolsData = (data, showMore) => {
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <h4>${name}</h4>
-                                        <i class="fa-regular fa-calendar"></i> <span>${date}</span>
+                                        <i class="fa-regular fa-calendar"></i> <span id="toolDate">${date}</span>
                                     </div>
                                     <div>
                                         <i onclick="getModalData('${id}')" type="button" data-bs-toggle="modal"
@@ -113,5 +113,26 @@ const handleSeeMore = () => {
     showMoreBtn.style.display = 'none';
 
 }
+// sorting by date
+let isDescending = true;
+const sortingByDate = () => {
+    const cards = [...document.querySelectorAll('#toolCard')];
+    cards.sort((a, b) => {
+        const aDate = new Date(a.querySelector('#toolDate').innerText);
+        const bDate = new Date(b.querySelector('#toolDate').innerText);
 
+        if (aDate > bDate) {
+            return isDescending ? 1 : -1;
+        } else if (aDate < bDate) {
+            return isDescending ? -1 : 1;
+        } else {
+            return 0
+        }
+    });
+    const cardContainer = document.getElementById('card-container');
+    cards.forEach(card => cardContainer.appendChild(card));
+    // console.log('i am clicked', cards);
+    isDescending = !isDescending;
+
+}
 getToolsData();
