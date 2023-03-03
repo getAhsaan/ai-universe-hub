@@ -51,30 +51,34 @@ const getModalData = (id) => {
         .then(data => showModalData(data.data))
 }
 const showModalData = (modalData) => {
-    // console.log(modalData);
+    console.log(modalData);
 
     const { description, features, pricing, integrations, image_link, input_output_examples } = modalData;
-   
+
     // for modal description
     document.getElementById('modal-description').innerHTML = description;
     // for modal pricing
-    document.getElementById('price-1').innerHTML = pricing[0].price + ' ' + pricing[0].plan;
-    document.getElementById('price-2').innerHTML = pricing[1].price + ' ' + pricing[1].plan;
-    document.getElementById('price-3').innerHTML = pricing[2].price + ' ' + pricing[2].plan;
+    document.getElementById('price-1').innerHTML = `${pricing ? pricing[0].price : 'Free of Cost/'} ${pricing ? pricing[0].plan : 'Basic'}`;
+    document.getElementById('price-2').innerHTML = `${pricing ? pricing[1].price : 'Free Of Cost/'} ${pricing ? pricing[1].plan : 'Pro'}`;
+    document.getElementById('price-3').innerHTML = `${pricing ? pricing[2].price : 'Free of Cost /'} ${pricing ? pricing[2].plan : 'Enterprise'}`;
     // for modal feature
+    const fName = [];
+    for (const f in features) {
+        fName.push(features[f].feature_name)
+    }
     document.getElementById('modal-feature-container').innerHTML = `
-
+    ${fName.map(f => `<li class="list-item">${f}</li>`).join(' ')}
     `
     // for modal integrations 
     document.getElementById('modal-integrations-container').innerHTML = `
-         ${integrations.map(i => `<li class="list-item">${i}</li>`).join('')}
+         ${integrations ? integrations.map(i => `<li class="list-item">${i}</li>`).join('') : 'No data Found'}
     `
     // for modal image and input, output
-    document.getElementById('modal right-container').innerHTML =  `
+    document.getElementById('modal right-container').innerHTML = `
         <img src="${image_link[0]}" style="width: 437px; height: 250px;"
           class="img-fluid rounded" alt="">
-          <h5 class="text-center mt-4">${input_output_examples[0].input}</h5>
-          <p class="text-center">${input_output_examples[0].output}</p>
+          <h5 class="text-center mt-4">${input_output_examples ? input_output_examples[0].input : 'Can you give any example?'}</h5>
+          <p class="text-center">${input_output_examples ? input_output_examples[0].output : 'No! Not Yet! Take a break!!!'}</p>
           <span class="text-white bg-danger bg-opacity-75 rounded-pill me-3 mt-3 px-2 py-1 position-absolute top-0 end-0">94%
            accuracy</span>
     `
