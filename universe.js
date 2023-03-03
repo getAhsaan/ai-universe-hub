@@ -88,7 +88,7 @@ const showModalData = (modalData) => {
           class="img-fluid rounded" alt="">
           <h5 class="text-center mt-4">${input_output_examples ? input_output_examples[0].input : 'Can you give any example?'}</h5>
           <p class="text-center">${input_output_examples ? input_output_examples[0].output : 'No! Not Yet! Take a break!!!'}</p>
-          <span id="score" class="text-white bg-danger bg-opacity-75 rounded-pill me-3 mt-3 px-2 py-1 position-absolute top-0 end-0">${accuracy.score ?
+          <span style="display:${accuracy.score === null ? 'none' : 'block'}" id="score" class="text-white bg-danger bg-opacity-75 rounded-pill me-3 mt-3 px-2 py-1 position-absolute top-0 end-0">${accuracy.score ?
             (accuracy.score).toString().slice(2, 4) :
             ''}%
            accuracy</span>
