@@ -1,9 +1,10 @@
 const getToolsData = () => {
+    showLoader(true);
     fetch(' https://openapi.programming-hero.com/api/ai/tools')
         .then(res => res.json())
         .then(data => showToolsData(data.data.tools))
 };
-getToolsData();
+
 const showToolsData = (data) => {
     // console.log(data);
     data.slice(0, 6).forEach(toolData => {
@@ -32,16 +33,15 @@ const showToolsData = (data) => {
                                          class="fa-solid fa-arrow-right bg-danger bg-opacity-10 
                                          btn text-danger rounded-circle p-2">
                                          </i>
-
                                     </div>
                                 </div>
                             </div>
-
                            
                         </div>
                     </div>
     `
     });
+    showLoader(false);
 }
 
 const getModalData = (id) => {
@@ -56,11 +56,11 @@ const showModalData = (modalData) => {
     // for modal description
     document.getElementById('modal-description').innerHTML = description;
     // for modal pricing
-    document.getElementById('price-1').innerHTML = `${pricing ? pricing[0].price !=='0' && pricing[0].price !=='No cost' ? pricing[0].price : 'Free Of Cost/' : 'Free of Cost/'} ${pricing ? pricing[0].plan : 'Basic'}`;
+    document.getElementById('price-1').innerHTML = `${pricing ? pricing[0].price !== '0' && pricing[0].price !== 'No cost' ? pricing[0].price : 'Free Of Cost/' : 'Free of Cost/'} ${pricing ? pricing[0].plan : 'Basic'}`;
 
-    document.getElementById('price-2').innerHTML = `${pricing ? pricing[1].price !=='0' && pricing[0].price !=='No cost' ? pricing[1].price : 'Free Of Cost/' : 'Free of Cost/'} ${pricing ? pricing[1].plan : 'Pro'}`;
+    document.getElementById('price-2').innerHTML = `${pricing ? pricing[1].price !== '0' && pricing[0].price !== 'No cost' ? pricing[1].price : 'Free Of Cost/' : 'Free of Cost/'} ${pricing ? pricing[1].plan : 'Pro'}`;
 
-    document.getElementById('price-3').innerHTML = `${pricing ? pricing[2].price !=='0' && pricing[0].price !=='No cost' ? pricing[2].price : 'Free Of Cost/' : 'Free of Cost/'} ${pricing ? pricing[2].plan : 'Enterprise'}`;
+    document.getElementById('price-3').innerHTML = `${pricing ? pricing[2].price !== '0' && pricing[0].price !== 'No cost' ? pricing[2].price : 'Free Of Cost/' : 'Free of Cost/'} ${pricing ? pricing[2].plan : 'Enterprise'}`;
 
     // document.getElementById('price-2').innerHTML = `${pricing ? pricing[1].price : 'Free Of Cost/'} ${pricing ? pricing[1].plan : 'Pro'}`;
     // document.getElementById('price-3').innerHTML = `${pricing ? pricing[2].price : 'Free of Cost /'} ${pricing ? pricing[2].plan : 'Enterprise'}`;
@@ -82,9 +82,22 @@ const showModalData = (modalData) => {
           class="img-fluid rounded" alt="">
           <h5 class="text-center mt-4">${input_output_examples ? input_output_examples[0].input : 'Can you give any example?'}</h5>
           <p class="text-center">${input_output_examples ? input_output_examples[0].output : 'No! Not Yet! Take a break!!!'}</p>
-          <span id="score" class="text-white bg-danger bg-opacity-75 rounded-pill me-3 mt-3 px-2 py-1 position-absolute top-0 end-0">${accuracy.score ? 
+          <span id="score" class="text-white bg-danger bg-opacity-75 rounded-pill me-3 mt-3 px-2 py-1 position-absolute top-0 end-0">${accuracy.score ?
             (accuracy.score).toString().slice(2, 4) :
-             '' }%
+            ''}%
            accuracy</span>
     `
 }
+
+// loader/spinner control
+const showLoader = (isLoading) => {
+    const loaderBtn = document.getElementById('loader-btn');
+    if(isLoading) {
+        loaderBtn.classList.remove('d-none');
+    }else{
+        loaderBtn.classList.add('d-none');
+    }
+}
+
+
+getToolsData();
